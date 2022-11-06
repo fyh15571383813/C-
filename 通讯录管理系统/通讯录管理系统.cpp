@@ -1,7 +1,92 @@
 //封装函数显示界面	void showMenu
 //在main函数中调用
 #include <iostream>
+#include <string>
+#define MAX	1000
 using namespace std;
+
+//联系人结构体
+struct Person
+{
+	//名字
+	string m_Name;
+	//性别
+	int m_Sex;
+	//年龄
+	int m_Age;
+	//电话
+	string m_Phone;
+	//住址
+	string m_Addr;
+
+};
+
+//通讯录结构体
+struct Addressbooks
+{
+	//通讯录中保存联系人的数组
+	struct Person personArray[MAX];
+	//通讯录中当前记录联系人个数
+	int m_Size;
+};
+
+//添加联系人
+void addPerson(Addressbooks * abs)
+{
+	//判断通讯录是否已满，如果满了就不再添加
+	if (abs->m_Size == MAX)
+	{
+		cout << "通讯录已满，无法添加！" << endl;
+		return;
+	}
+	else
+	{
+		//添加具体联系人
+		string name;
+		cout << "请输入姓名" << endl;
+		cin >> name;
+		abs->personArray[abs->m_Size].m_Name = name;
+
+		cout << "请输入性别" << endl;
+		cout << "1——男" << endl;
+		cout << "2——女" << endl;
+		int sex = 0;
+		while (true)
+		{
+			//如果输入的是1或2，可以退出循环
+			cin >> sex;
+			if (sex == 1 || sex == 2)
+			{
+				abs->personArray[abs->m_Size].m_Sex = sex;
+				break;
+			}
+			cout << "输入错误，重新输入" << endl;
+		}
+		
+		cout << "请输入年龄" << endl;
+		int age = 0;
+		cin >> age;
+		abs->personArray[abs->m_Size].m_Age = age;
+
+		cout << "请输入联系电话" << endl;
+		string phone;
+		cin >> phone;
+		abs->personArray[abs->m_Size].m_Phone = phone;
+
+		cout << "请输入家庭住址" << endl;
+		string address;
+		cin >> address;
+		abs->personArray[abs->m_Size].m_Addr = address;
+
+		//更新通讯录人数
+		abs->m_Size++;
+		cout << "添加成功" << endl;
+		
+		//清屏
+		system("pause"); //请按任意键继续
+		system("cls");	//清屏
+	}
+}
 
 void showMenu()
 {
@@ -16,6 +101,11 @@ void showMenu()
 
 int main()
 {
+	//创建通讯录结构体变量
+	Addressbooks abs;
+	//初始化通讯录当前人员个数
+	abs.m_Size = 0;
+
 	int select = 0;	//用户输入的变量
 	
 	//输入非0都会重新回到菜单
@@ -26,6 +116,7 @@ int main()
 		switch (select)
 		{
 		case 1://1、添加联系人
+			addPerson(&abs);//利用地址传递，可以修饰形参
 			break;
 		case 2://2、显示联系人
 			break;
