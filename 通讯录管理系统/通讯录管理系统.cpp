@@ -227,6 +227,21 @@ void fixPerson(Addressbooks* abs)
 	system("cls");	//清屏
 }
 
+void cleanPerson(Addressbooks* abs)
+{
+	cout << "是否确定要清空,如果确定请输入 1" << endl;
+	int ret = 0;
+	cin >> ret;
+	if (ret == 1)
+	{
+		//将当前记录的联系人数量记为0
+		abs->m_Size = 0;
+		cout << "已清空" << endl;
+	}
+	system("pause"); //请按任意键继续
+	system("cls");	//清屏
+}
+
 void showMenu()
 {
 	cout << "*****  1、添加联系人" << endl;
@@ -270,6 +285,7 @@ int main()
 			fixPerson(&abs);
 			break;
 		case 6://6、清空联系人
+			cleanPerson(&abs);
 			break;
 		case 0://0、推出通讯录
 			cout << "欢迎下次使用" << endl;
