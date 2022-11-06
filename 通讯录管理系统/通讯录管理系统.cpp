@@ -82,10 +82,33 @@ void addPerson(Addressbooks * abs)
 		abs->m_Size++;
 		cout << "添加成功" << endl;
 		
-		//清屏
 		system("pause"); //请按任意键继续
 		system("cls");	//清屏
 	}
+}
+
+//显示联系人
+void showPerson(Addressbooks * abs)
+{
+	//如果为0提示为空
+	if (abs->m_Size == 0)
+	{
+		cout << "当前记录为空" << endl;
+	}
+	else
+	{
+		for (int i = 0; i < abs->m_Size; i++)
+		{
+			cout << "姓名" << abs->personArray[i].m_Name << endl;
+			cout << "性别" << (abs->personArray[i].m_Sex == 1 ? "男" : "女") << endl;
+			cout << "年龄" << abs->personArray[i].m_Age << endl;
+			cout << "电话" << abs->personArray[i].m_Phone << endl;
+			cout << "地址" << abs->personArray[i].m_Addr << endl;
+		}
+	}
+
+	system("pause"); //请按任意键继续
+	system("cls");	//清屏
 }
 
 void showMenu()
@@ -119,6 +142,7 @@ int main()
 			addPerson(&abs);//利用地址传递，可以修饰形参
 			break;
 		case 2://2、显示联系人
+			showPerson(&abs);
 			break;
 		case 3://3、删除联系人
 			break;
