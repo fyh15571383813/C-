@@ -99,16 +99,30 @@ void showPerson(Addressbooks * abs)
 	{
 		for (int i = 0; i < abs->m_Size; i++)
 		{
-			cout << "姓名" << abs->personArray[i].m_Name << endl;
-			cout << "性别" << (abs->personArray[i].m_Sex == 1 ? "男" : "女") << endl;
-			cout << "年龄" << abs->personArray[i].m_Age << endl;
-			cout << "电话" << abs->personArray[i].m_Phone << endl;
-			cout << "地址" << abs->personArray[i].m_Addr << endl;
+			cout << "姓名:" << abs->personArray[i].m_Name << endl;
+			cout << "性别:" << (abs->personArray[i].m_Sex == 1 ? "男" : "女") << endl;
+			cout << "年龄:" << abs->personArray[i].m_Age << endl;
+			cout << "电话:" << abs->personArray[i].m_Phone << endl;
+			cout << "地址:" << abs->personArray[i].m_Addr << endl;
 		}
 	}
 
 	system("pause"); //请按任意键继续
 	system("cls");	//清屏
+}
+
+//检测联系人是否在
+int isExist(Addressbooks * abs, string name)
+{
+	for (int i = 0; i < abs->m_Size; i++)
+	{
+		//找到用户输入的名字了
+		if (abs->personArray[i].m_Name == name)
+		{
+			return i;//找到了，返回这个人在数组中的下表编号
+		}
+	}
+	return -1;
 }
 
 void showMenu()
@@ -145,6 +159,20 @@ int main()
 			showPerson(&abs);
 			break;
 		case 3://3、删除联系人
+		/*{
+			cout << "请输入删除联系人姓名" << endl;
+			string name;
+			cin >> name;
+			if (isExist(&abs, name) == -1)
+			{
+				cout << "查无此人" << endl;
+			}
+			else
+			{
+				cout << "找到" << endl;
+			}
+		}
+		*/
 			break;
 		case 4://4、查找联系人
 			break;
